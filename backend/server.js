@@ -7,11 +7,14 @@ const corsOptions = require("./config/corsOption")
 const connectDB = require("./config/database")
 const port = process.env.PORT || 5000
 const mongoose = require("mongoose")
+const userHandler = require("./routers/registerRoute")
 
 connectDB()
 app.use(cookie_parser()) // make sure this is the highest of all
 app.use(cors(corsOptions))
 app.use(express.json())
+
+app.use("/register" , userHandler)
 
 
 mongoose.connection.once("open", ()=>{
