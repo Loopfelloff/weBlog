@@ -2,11 +2,12 @@ const User = require("../models/userMode.js")
 const bcrypt = require("bcrypt")
 const mongoose = require("mongoose")
 
-const handleNewUser = async(req , res)=>{
+const handleNewUser = async(req , res , next)=>{
     const session = await mongoose.startSession() 
     try {
 
-	await session.startTransaction()
+	session.startTransaction()
+	req.session = session
 	if(!req.body.userName || req.body.userName.trim() === "") return res.status(400).json({err : "missing Username"})
 	if(!req.body.email) return res.status(400).json({err : "missing email"})
 	if(!req.body.password) return res.status(400).json({err : "missing password"})
@@ -18,7 +19,7 @@ const handleNewUser = async(req , res)=>{
 
 	if(foundUser){
 	    await session.abortTransaction()
-	    return req.status(409).json({err : "this email is already registered"})
+	    return res.status(409).json({err : "this email is already registered"})
 	} 
 
 	const encryptedUserPassword = await bcrypt.hash(password, 10)
@@ -28,18 +29,15 @@ const handleNewUser = async(req , res)=>{
 	    username : userName
 	})
 
+	res.status(200).json({msg : "successfully registered" , result})
+
 	await session.commitTransaction()
 
-	return res.status(200).json({msg : "successfully registered" , result})
-    	
     } catch (err) {
-    
-	await session.abortTransaction()
-	res.status(500).json({err : err.stack})
+	return next(err)
     }
-    finally{
-	await session.endSession()
-    }
+
+    await session.endSession()
 }
 
 module.exports = handleNewUser
