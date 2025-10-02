@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('./partials/head.ejs')%>
+		<title>Home Page</title>
+	</head>
+	<body class="flex flex-col flex-nowrap bg-gray-100 min-h-screen">		
+	<%-include('./partials/nav.ejs')%>
+	<main class="grow p-1.5">
+	    
+		<!-- Hero Section -->
+		<section class="main-section rounded-[10px] w-full h-96 bg-[url(/images/workingPerson.jpg)] bg-cover bg-left relative mb-8">
+			<section class="blur-section w-full h-full bg-gray-400 opacity-50 rounded-[10px]">
+			</section>
+			<section class="unblur-section w-full h-full rounded-[10px] absolute top-0 left-0 flex flex-col justify-end p-20 gap-10">
+				<h1 class="text-white font-bold text-5xl">Blogging website for passionate blogger</h1>
+				<h3 class="text-gray-200 font-bold text-2xl">Words are flowing endlessly like rain into a paper cup - john lenon</h3>
+				<button class="p-5 w-40 text-white flex justify-center items-center 
+		bg-gradient-to-r from-[#2A7B9B] via-[#57C785] to-[#EDDD53] 
+		rounded-lg font-semibold hover:opacity-90 transition-opacity">
+		Read Article
+	</button>
+			</section>
+		</section>	
+
+		<!-- Featured Posts Section -->
+		<section class="container mx-auto px-4 mb-12">
+			<div class="flex justify-between items-center mb-6">
+				<h2 class="text-3xl font-bold text-gray-800">Featured Articles</h2>
+				<a href="/articles" class="text-[#2A7B9B] font-semibold hover:underline">View All →</a>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+				<!-- Article Card 1 -->
+				<article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+					<img src="/images/article1.jpg" alt="Article thumbnail" class="w-full h-48 object-cover">
+					<div class="p-6">
+						<div class="flex gap-2 mb-3">
+							<span class="px-3 py-1 bg-[#57C785] text-white text-xs rounded-full">Technology</span>
+							<span class="text-gray-500 text-sm">5 min read</span>
+						</div>
+						<h3 class="text-xl font-bold text-gray-800 mb-2 hover:text-[#2A7B9B] cursor-pointer">The Future of Web Development</h3>
+						<p class="text-gray-600 mb-4">Exploring the latest trends and technologies shaping the future of web development in 2025...</p>
+						<div class="flex items-center justify-between">
+							<div class="flex items-center gap-2">
+								<img src="/images/author1.jpg" alt="Author" class="w-8 h-8 rounded-full">
+								<span class="text-sm text-gray-700">John Doe</span>
+							</div>
+							<span class="text-sm text-gray-500">Mar 15, 2025</span>
+						</div>
+					</div>
+				</article>
+
+				<!-- Article Card 2 -->
+				<article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+					<img src="/images/article2.jpg" alt="Article thumbnail" class="w-full h-48 object-cover">
+					<div class="p-6">
+						<div class="flex gap-2 mb-3">
+							<span class="px-3 py-1 bg-[#EDDD53] text-gray-800 text-xs rounded-full">Lifestyle</span>
+							<span class="text-gray-500 text-sm">8 min read</span>
+						</div>
+						<h3 class="text-xl font-bold text-gray-800 mb-2 hover:text-[#2A7B9B] cursor-pointer">Finding Balance in Remote Work</h3>
+						<p class="text-gray-600 mb-4">Practical tips and strategies for maintaining work-life balance while working from home...</p>
+						<div class="flex items-center justify-between">
+							<div class="flex items-center gap-2">
+								<img src="/images/author2.jpg" alt="Author" class="w-8 h-8 rounded-full">
+								<span class="text-sm text-gray-700">Jane Smith</span>
+							</div>
+							<span class="text-sm text-gray-500">Mar 12, 2025</span>
+						</div>
+					</div>
+				</article>
+
+				<!-- Article Card 3 -->
+				<article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+					<img src="/images/article3.jpg" alt="Article thumbnail" class="w-full h-48 object-cover">
+					<div class="p-6">
+						<div class="flex gap-2 mb-3">
+							<span class="px-3 py-1 bg-[#2A7B9B] text-white text-xs rounded-full">Design</span>
+							<span class="text-gray-500 text-sm">6 min read</span>
+						</div>
+						<h3 class="text-xl font-bold text-gray-800 mb-2 hover:text-[#2A7B9B] cursor-pointer">Minimalist Design Principles</h3>
+						<p class="text-gray-600 mb-4">How less is more when it comes to creating beautiful and functional user interfaces...</p>
+						<div class="flex items-center justify-between">
+							<div class="flex items-center gap-2">
+								<img src="/images/author3.jpg" alt="Author" class="w-8 h-8 rounded-full">
+								<span class="text-sm text-gray-700">Mike Johnson</span>
+							</div>
+							<span class="text-sm text-gray-500">Mar 10, 2025</span>
+						</div>
+					</div>
+				</article>
+			</div>
+		</section>
+
+		<!-- Categories Section -->
+		<section class="container mx-auto px-4 mb-12">
+			<h2 class="text-3xl font-bold text-gray-800 mb-6">Popular Categories</h2>
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+				<div class="bg-white rounded-lg p-6 text-center hover:shadow-lg transition-shadow cursor-pointer">
+					<div class="text-4xl mb-3">💻</div>
+					<h3 class="font-semibold text-gray-800">Technology</h3>
+					<p class="text-sm text-gray-500 mt-1">145 articles</p>
+				</div>
+				<div class="bg-white rounded-lg p-6 text-center hover:shadow-lg transition-shadow cursor-pointer">
+					<div class="text-4xl mb-3">🎨</div>
+					<h3 class="font-semibold text-gray-800">Design</h3>
+					<p class="text-sm text-gray-500 mt-1">98 articles</p>
+				</div>
+				<div class="bg-white rounded-lg p-6 text-center hover:shadow-lg transition-shadow cursor-pointer">
+					<div class="text-4xl mb-3">🌱</div>
+					<h3 class="font-semibold text-gray-800">Lifestyle</h3>
+					<p class="text-sm text-gray-500 mt-1">203 articles</p>
+				</div>
+				<div class="bg-white rounded-lg p-6 text-center hover:shadow-lg transition-shadow cursor-pointer">
+					<div class="text-4xl mb-3">📚</div>
+					<h3 class="font-semibold text-gray-800">Education</h3>
+					<p class="text-sm text-gray-500 mt-1">127 articles</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Call to Action Section -->
+		<section class="container mx-auto px-4 mb-12">
+			<div class="bg-gradient-to-r from-[#2A7B9B] via-[#57C785] to-[#EDDD53] rounded-lg p-12 text-center">
+				<h2 class="text-3xl font-bold text-white mb-4">Start Your Blogging Journey Today</h2>
+				<p class="text-white text-lg mb-6">Join thousands of writers sharing their stories and ideas with the world</p>
+				<button class="bg-white text-[#2A7B9B] px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+					Create Your Blog
+				</button>
+			</div>
+		</section>
+
+		<!-- Recent Posts Section -->
+		<section class="container mx-auto px-4 mb-12">
+			<h2 class="text-3xl font-bold text-gray-800 mb-6">Recent Posts</h2>
+			<div class="space-y-4">
+				<article class="bg-white rounded-lg shadow-md p-6 flex gap-6 hover:shadow-xl transition-shadow">
+					<img src="/images/recent1.jpg" alt="Post thumbnail" class="w-32 h-32 rounded-lg object-cover">
+					<div class="flex-1">
+						<span class="text-sm text-gray-500">March 14, 2025</span>
+						<h3 class="text-xl font-bold text-gray-800 mt-1 mb-2 hover:text-[#2A7B9B] cursor-pointer">10 Tips for Writing Engaging Blog Posts</h3>
+						<p class="text-gray-600 mb-3">Master the art of captivating your audience with these proven writing techniques...</p>
+						<div class="flex items-center gap-4 text-sm text-gray-500">
+							<span>👁️ 2.5k views</span>
+							<span>💬 42 comments</span>
+							<span>❤️ 156 likes</span>
+						</div>
+					</div>
+				</article>
+
+				<article class="bg-white rounded-lg shadow-md p-6 flex gap-6 hover:shadow-xl transition-shadow">
+					<img src="/images/recent2.jpg" alt="Post thumbnail" class="w-32 h-32 rounded-lg object-cover">
+					<div class="flex-1">
+						<span class="text-sm text-gray-500">March 13, 2025</span>
+						<h3 class="text-xl font-bold text-gray-800 mt-1 mb-2 hover:text-[#2A7B9B] cursor-pointer">The Power of Storytelling in Content Marketing</h3>
+						<p class="text-gray-600 mb-3">Discover how authentic stories can transform your content strategy and connect with readers...</p>
+						<div class="flex items-center gap-4 text-sm text-gray-500">
+							<span>👁️ 1.8k views</span>
+							<span>💬 28 comments</span>
+							<span>❤️ 94 likes</span>
+						</div>
+					</div>
+				</article>
+			</div>
+		</section>
+	
+	</main>
+	<%-include('./partials/footer.ejs')%>
+	<%-include('./partials/script.ejs')%>
+	<%-include('./partials/nav-script.ejs')%>
+	</body>
+</html>

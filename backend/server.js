@@ -7,21 +7,26 @@ const corsOptions = require("./config/corsOption")
 const connectDB = require("./config/database")
 const port = process.env.PORT || 5000
 const mongoose = require("mongoose")
-const userHandler = require("./routers/registerRoute")
-const loginHandler = require("./routers/loginRoute")
 
 connectDB()
 app.use(cookie_parser()) // make sure this is the highest of all
 app.use(cors(corsOptions))
 app.use(express.json())
+app.use(express.urlencoded({extended : false}))
+app.set('view engine' , "ejs")
+app.set("views" , "./views")
+app.use(express.static("./public"))
+app.use(express.urlencoded({extended : false}))
 
-app.use("/register" , userHandler)
-app.use("/login" , loginHandler)
+app.get('/' ,(req, res)=>{
+   res.render("home") 
+})
+
 
 //error handling middleware
 app.use(async (err , req, res , next)=>{
     const session = req.session
-    await session.abortTransaction()
+    if(session) await session.abortTransaction()
     return res.status(500).json({err : `Internal server error : ${err.stack}`})
 })
 
