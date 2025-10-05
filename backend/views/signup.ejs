@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('./partials/head.ejs')%>
+		<title>SignUp</title>
+	</head>
+	<body class="flex flex-col flex-nowrap bg-gray-100 min-h-screen">		
+	<%-include('./partials/nav.ejs')%>
+	<main class="flex flex-col flex-nowrap justify-center gap-6 items-center grow ">
+	<div class="bg-gray-500  rounded-[5px] w-[550px] flex flex-row justify-center p-2 text-white ">Already have an account? <a href="" class="text-blue-500">Click here to log in -> </a></div> 
+	<form action="http://localhost:5000/register" method='POST' class='bg-white rounded-2xl min-h-[600px] w-[500px] h-fit shadow-lg p-6 flex flex-col justify-center items-center '>
+	   <div class='flex justify-center items-align p-3 text-2xl font-mono font-bold'>Sign Up</div> 
+	   <div class='flex justify-center items-align p-3 font-mono text-lg font-bold gap-1 border-gray-500 border-2 rounded-[4px] w-full cursor-pointer'><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png" alt="" class='w-[20px] h-[20px] translate-y-[4px]'>Sign up with Google</div>
+	   <div class='encapsulate-field flex flex-col flex-nowrap justify-center items-align gap-16 mt-5 grow  w-full'>
+	   <div class='flex flex-col flex-nowarp justify-center items-align relative'>
+	   <input type="text" class='peer h-8 border-b-4 border-b-gray-500 focus:border-b-blue-500 focus:outline-none duration-150 ' name="username" id='username' placeholder=' '>  
+	   <label for="username" class=' absolute top-0 left-0 peer-placeholder-shown:text-black peer-placeholder-shown:text-lg   peer-placeholder-shown:translate-y-0 peer-focus:-translate-y-8 -translate-y-8 peer-focus:text-blue-500 peer-focus:text-sm text-blue-500 text-sm duration-200'>User Name*</label> 
+	    <p class='usernameHelper text-red-500 text-sm '></p>
+	   </div> 
+	   <div class='flex flex-col flex-nowarp justify-center items-align relative'>
+	   <input type="email" class='peer h-8 border-b-4 border-b-gray-500 focus:border-b-blue-500 focus:outline-none duration-150 ' name="email" id='email' placeholder=' '>  
+	   <label for="email" class=' absolute top-0 left-0 peer-placeholder-shown:text-black peer-placeholder-shown:text-lg   peer-placeholder-shown:translate-y-0 peer-focus:-translate-y-8 -translate-y-8 peer-focus:text-blue-500 peer-focus:text-sm text-blue-500 text-sm duration-200'>Email*</label> 
+	    <p class='emailHelper text-red-500 text-sm '></p>
+	   </div> 
+	   <div class='flex flex-col flex-nowarp justify-center items-align relative'>
+	   <input type="password" class='peer h-8 border-b-4 border-b-gray-500 focus:border-b-blue-500 focus:outline-none duration-150 ' name="password" id='password' placeholder=' '>  
+	   <label for="password" class=' absolute top-0 left-0 peer-placeholder-shown:text-black peer-placeholder-shown:text-lg   peer-placeholder-shown:translate-y-0 peer-focus:-translate-y-8 -translate-y-8 peer-focus:text-blue-500 peer-focus:text-sm text-blue-500 text-sm duration-200'>Password*</label> 
+	    <p class='passwordHelper text-red-500 text-sm '></p>
+	   </div> 
+	   <input type="submit" value='Submit' class='rounded-[5px] w-full p-3 bg-gray-500 text-xl text-white text-bold cursor-pointer'>
+	    </div>
+	   <% if(local.err !== undefined ) { %>
+		    <p class='text-red-500 text-sm' ><%= local.err%></p>
+		    <% } else if(local.msg !== undefined ) { %>
+		    <p class='text-blue-500 text-sm' ><%= local.msg%></p>
+		    <% } %>
+	</form>
+	</main>
+	<%-include('./partials/signup-script.ejs')%>
+	<%-include('./partials/footer.ejs')%>
+	<%-include('./partials/script.ejs')%>
+	<%-include('./partials/nav-script.ejs')%>
+	</body>
+</html>

@@ -1,0 +1,38 @@
+<script>
+    const username = document.querySelector('#username')
+    const password = document.querySelector('#password')
+    const email = document.querySelector('#email')
+    const usernameHelper = document.querySelector('.usernameHelper')
+    const emailHelper = document.querySelector('.emailHelper')
+    const passwordHelper = document.querySelector('.passwordHelper')
+    
+    username.addEventListener('keyup' , function(){
+	const usernameValue = this.value
+	if(usernameValue.trim() === '') usernameHelper.innerText = ``
+	else{
+	    if(usernameValue.length >=8) usernameHelper.innerText = `correct format`
+	    else usernameHelper.innerText = `username must be atleast 8 letter long`
+	    }
+    })
+
+    password.addEventListener('keyup', function(){
+	const passwordValue = this.value 
+	const passwordRegex =/^(?=.*\d)(?=.*\W).{8,}$/ 
+	const passwordCheck = passwordRegex.test(passwordValue)
+	if(passwordValue.trim() === '') passwordHelper.innerText = ``
+	else{
+	    if(passwordCheck) passwordHelper.innerText = `correct format`
+	    else passwordHelper.innerText = `password must be atleast 8 letters long with 1 symbol and 1 number`
+	    }
+    })
+    email.addEventListener('keyup', function(){
+	const emailValue = this.value 
+	const emailRegex =/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ // the first one is for email
+	const emailCheck = emailRegex.test(emailValue)
+	if(emailValue.trim() === '') emailHelper.innerText = ``
+	else{
+	    if(emailCheck) emailHelper.innerText = `correct format`
+	    else emailHelper.innerText = `email must be of correct format`
+	    }
+    })
+</script>
