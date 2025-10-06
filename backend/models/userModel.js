@@ -34,12 +34,12 @@ userSchema.static('verifyUser', async function(email , password){
     const user = this
     const foundUser = await user.findOne({email})
     if(!foundUser) throw new Error('such user not found')
-    const salt = user.salt
+    const salt = foundUser.salt
     const checkPassword = createHmac('sha256', salt).update(password).digest('hex')
 
     if(checkPassword !== foundUser.password) throw new Error('password incorrect')
 
-    return {...user , password : undefined , email : undefined } 
+    return {...foundUser , password : undefined , email : undefined } 
 })
 
 module.exports = mongoose.model('user' , userSchema)

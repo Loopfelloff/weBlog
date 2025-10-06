@@ -5,6 +5,9 @@
     const usernameHelper = document.querySelector('.usernameHelper')
     const emailHelper = document.querySelector('.emailHelper')
     const passwordHelper = document.querySelector('.passwordHelper')
+    const eyeIcon = document.querySelector('.eye-icon')
+
+    let pressedOrNot = false
     
     username.addEventListener('keyup' , function(){
 	const usernameValue = this.value
@@ -34,5 +37,17 @@
 	    if(emailCheck) emailHelper.innerText = `correct format`
 	    else emailHelper.innerText = `email must be of correct format`
 	    }
+    })
+    eyeIcon.addEventListener('click', function(){
+
+	if(!pressedOrNot){
+	    password.type= 'text'
+	    pressedOrNot = true
+	}
+	else{
+	    password.type= 'password'
+	    pressedOrNot = false
+	}
+	
     })
 </script>

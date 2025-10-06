@@ -1,0 +1,20 @@
+<script>
+    const eyeIcon = document.querySelector('.eye-icon')
+    const password = document.querySelector('#password')
+
+    let pressedOrNot = false
+
+    eyeIcon.addEventListener('click', function(){
+
+	if(!pressedOrNot){
+	    password.type= 'text'
+	    pressedOrNot = true
+	}
+	else{
+	    password.type= 'password'
+	    pressedOrNot = false
+	}
+	
+    })
+
+</script>

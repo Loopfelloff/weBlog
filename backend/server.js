@@ -9,6 +9,7 @@ const port = process.env.PORT || 5000
 const mongoose = require("mongoose")
 
 const signupHandler = require('./routers/signupRouter')
+const loginHandler = require('./routers/loginRouter')
 
 connectDB()
 app.use(cookie_parser()) // make sure this is the highest of all
@@ -21,7 +22,7 @@ app.use(express.urlencoded({extended : false}))
 
 // the one below is for all of the top level naviagtions
 app.get('/' , (req, res)=>{
-    return res.render('home')
+    return res.render('home' , {local : {}}) 
 })
 app.get('/:page' ,(req, res)=>{
     return res.render(req.params.page , {local : {}})
@@ -30,6 +31,7 @@ app.get('/:page' ,(req, res)=>{
 // this one is for normal routing
 
 app.use('/register' , signupHandler)
+app.use('/authentication' , loginHandler)
 
 //error handling middleware
 app.use(async (err , req, res , next)=>{
