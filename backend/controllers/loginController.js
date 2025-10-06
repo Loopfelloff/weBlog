@@ -1,4 +1,5 @@
 const User = require('../models/userModel.js')
+const jwt = require('jsonwebtoken')
 
 const loginHandler = async (req , res , next)=>{
 
@@ -16,10 +17,38 @@ const loginHandler = async (req , res , next)=>{
 
 	const {email , password} = req.body
 
-	const result = await User.verifyUser(email , password)
+	const foundUser = await User.findOne({email})
 
-	console.log(result)
-	
+	const result = await User.verifyUser(email , password)
+    
+	const payload = {
+	    fullName : foundUser.fullName,
+	    email : foundUser.email,
+	    password : foundUser.password,
+	    profileImageUrl : foundUser.profileImageUrl
+	}
+
+	const accessToken = jwt.sign(payload , process.env.ACCESS_TOKEN_SECRET , {
+	    expiresIn  : '30m'
+	})
+	const refreshToken = jwt.sign(payload , process.env.REFRESH_TOKEN_SECRET , {
+	    expiresIn  : '30d'
+	})
+
+
+	res.cookie('accessToken' , accessToken, {
+	    httpOnly : true, 
+	    maxAge : 30*24*60*60*1000
+	})
+	res.cookie('refreshToken' , refreshToken, {
+	    httpOnly : true, 
+	    maxAge : 30*24*60*60*1000
+	})
+
+	foundUser.refreshToken = refreshToken
+
+	await foundUser.save() // this and the previous line ensures
+
 	return res.render('home' , {local:{msg : 'successfully logged in' , result}})	
 
     } catch (err) {

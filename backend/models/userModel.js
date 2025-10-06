@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const {createHmac , randomBytes} = require('crypto') 
+const { networkInterfaces } = require('os')
 
 
 const userSchema = new Schema({
@@ -9,7 +10,8 @@ const userSchema = new Schema({
     password : {required : true , type : String},
     salt : String,
     profileImageUrl: {type : String , default : '/images/user.png'},
-    role : {type : String , enum : ["USER" , "ADMIN"] , default : "USER"}
+    role : {type : String , enum : ["USER" , "ADMIN"] , default : "USER"},
+    refreshToken :String 
 }, {timestamps : true})
 
 // this middleware is only called when call either model.save() or model.create()
@@ -33,13 +35,17 @@ userSchema.pre('save' , function(next){ // always be sure to not use the arrow o
 userSchema.static('verifyUser', async function(email , password){
     const user = this
     const foundUser = await user.findOne({email})
-    if(!foundUser) throw new Error('such user not found')
+    const emailError = new Error()
+    emailError.name = `such email doesn't exist`
+    if(!foundUser) throw emailError 
     const salt = foundUser.salt
     const checkPassword = createHmac('sha256', salt).update(password).digest('hex')
 
-    if(checkPassword !== foundUser.password) throw new Error('password incorrect')
+    const passwordError = new Error()
+    passwordError.name = `incorrect password entered` 
+    if(checkPassword !== foundUser.password) throw passwordError 
 
-    return {...foundUser , password : undefined , email : undefined } 
+    return {fullName : foundUser.fullName, email : foundUser.email , password : foundUser.password , profileImageUrl :foundUser.profileImageUrl}
 })
 
 module.exports = mongoose.model('user' , userSchema)

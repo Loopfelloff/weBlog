@@ -10,6 +10,7 @@ const mongoose = require("mongoose")
 
 const signupHandler = require('./routers/signupRouter')
 const loginHandler = require('./routers/loginRouter')
+const {verifyJWT} = require('./middlewares/verifyJWT')
 
 connectDB()
 app.use(cookie_parser()) // make sure this is the highest of all
@@ -20,18 +21,20 @@ app.set("views" , "./views")
 app.use(express.static("./public"))
 app.use(express.urlencoded({extended : false}))
 
+// this one is for normal routing
+
+app.use('/register' , signupHandler)
+app.use('/authentication' , loginHandler)
+
 // the one below is for all of the top level naviagtions
+app.get('/', verifyJWT)
 app.get('/' , (req, res)=>{
-    return res.render('home' , {local : {}}) 
+    return res.render('home' , {local : {result : {...req.user}}}) 
 })
 app.get('/:page' ,(req, res)=>{
     return res.render(req.params.page , {local : {}})
 })
 
-// this one is for normal routing
-
-app.use('/register' , signupHandler)
-app.use('/authentication' , loginHandler)
 
 //error handling middleware
 app.use(async (err , req, res , next)=>{
@@ -39,13 +42,14 @@ app.use(async (err , req, res , next)=>{
     const renderIssue = req.renderIssue 
     if(session) await session.abortTransaction()
     if(renderIssue) return res.render(renderIssue , {local : {err : `${err.name}`}})
+    console.log(err.name)
     return res.status(500).json({err : `Internal server error : ${err.stack}`})
 })
 
 
 mongoose.connection.once("open", ()=>{
     console.log("connected to mongoDB")
-    app.listen(port , ()=>{
+    app.listen(5000 , ()=>{
 	console.log("the server is listening at port : " , port)
     })
 })
