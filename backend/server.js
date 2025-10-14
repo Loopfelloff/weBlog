@@ -10,7 +10,7 @@ const mongoose = require("mongoose")
 
 const signupHandler = require('./routers/signupRouter')
 const loginHandler = require('./routers/loginRouter')
-const {verifyJWT} = require('./middlewares/verifyJWT')
+const verifyPassportJWT = require('./middlewares/verifyPassportJWT')
 
 connectDB()
 app.use(cookie_parser()) // make sure this is the highest of all
@@ -27,14 +27,13 @@ app.use('/register' , signupHandler)
 app.use('/authentication' , loginHandler)
 
 // the one below is for all of the top level naviagtions
-app.get('/', verifyJWT)
+app.get('/',verifyPassportJWT) 
 app.get('/' , (req, res)=>{
     return res.render('home' , {local : {result : {...req.user}}}) 
 })
 app.get('/:page' ,(req, res)=>{
     return res.render(req.params.page , {local : {}})
 })
-
 
 //error handling middleware
 app.use(async (err , req, res , next)=>{

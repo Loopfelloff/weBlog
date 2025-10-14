@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const {createHmac , randomBytes} = require('crypto') 
-const { networkInterfaces } = require('os')
 
 
 const userSchema = new Schema({

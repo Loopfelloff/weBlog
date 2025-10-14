@@ -49,6 +49,8 @@ const loginHandler = async (req , res , next)=>{
 
 	await foundUser.save() // this and the previous line ensures
 
+	req.user = payload
+
 	return res.render('home' , {local:{msg : 'successfully logged in' , result}})	
 
     } catch (err) {

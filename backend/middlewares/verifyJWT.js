@@ -36,10 +36,17 @@ const verifyJWT = async (req, res ,next) =>{
 		const {refreshToken}  = req.cookies 
 		decoded = await promiseVerify(refreshToken, process.env.REFRESH_TOKEN_SECRET)
 
-		const newAccessToken = jwt.sign(decoded, process.env.ACCESS_TOKEN_SECRET , {
+		const payload = { 
+	    fullName : decoded.fullName,
+		    email : decoded.email,
+		    password : decoded.password,
+		    profileImageUrl : decoded.profileImageUrl
+		}
+
+		const newAccessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET , {
 			expiresIn : '30m'
 		    })
-		const newRefreshToken = jwt.sign(decoded, process.env.REFRESH_TOKEN_SECRET, {
+		const newRefreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {
 			expiresIn : '30d'
 		    })
 		res.cookie('accessToken' , newAccessToken , {
@@ -55,7 +62,7 @@ const verifyJWT = async (req, res ,next) =>{
 		
 		foundUser.refreshToken = newRefreshToken
 
-		req.user = {...decoded}
+		req.user = {...payload}
 
 		await foundUser.save()
 
