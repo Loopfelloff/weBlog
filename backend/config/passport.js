@@ -25,7 +25,6 @@ passport.use(new JWTStrategy(option , async (payload, cb)=>{
 	const toSend= {
 	    fullName : foundUser.fullName,
 	    email : foundUser.email,
-	    password : foundUser.password,
 	    profileImageUrl : foundUser.profileImageUrl
 	}
 	if(foundUser) return cb(null , toSend) // 

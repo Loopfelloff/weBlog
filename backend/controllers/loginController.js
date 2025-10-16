@@ -24,7 +24,6 @@ const loginHandler = async (req , res , next)=>{
 	const payload = {
 	    fullName : foundUser.fullName,
 	    email : foundUser.email,
-	    password : foundUser.password,
 	    profileImageUrl : foundUser.profileImageUrl
 	}
 

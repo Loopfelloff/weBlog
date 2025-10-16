@@ -6,7 +6,7 @@ const {createHmac , randomBytes} = require('crypto')
 const userSchema = new Schema({
     fullName : {required : true , type : String},
     email : {required : true , type : String , unique : true},
-    password : {required : true , type : String},
+    password : {type : String},
     salt : String,
     profileImageUrl: {type : String , default : '/images/user.png'},
     role : {type : String , enum : ["USER" , "ADMIN"] , default : "USER"},
