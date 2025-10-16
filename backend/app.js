@@ -56,7 +56,7 @@ app.use(async (err , req, res , next)=>{
 
 mongoose.connection.once("open", ()=>{
     console.log("connected to mongoDB")
-    app.listen(5000 , ()=>{
+    app.listen(5000 , '0.0.0.0', ()=>{
 	console.log("the server is listening at port : " , port)
     })
 })

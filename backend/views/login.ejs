@@ -8,7 +8,7 @@
 	<%-include('./partials/nav.ejs')%>
 	<main class="flex flex-col flex-nowrap justify-center gap-6 items-center grow ">
 	    <div class="bg-gray-500  rounded-[5px] w-[550px] flex flex-row justify-center p-2 text-white ">Don't have an account <a href="" class="text-blue-500">Click here to signin -></a></div> 
-	<form action="http://localhost:5000/authentication" method='POST' class='bg-white rounded-2xl min-h-[600px] w-[500px] h-fit shadow-lg p-6 flex flex-col justify-center items-center '>
+	<form action="/authentication" method='POST' class='bg-white rounded-2xl min-h-[600px] w-[500px] h-fit shadow-lg p-6 flex flex-col justify-center items-center '>
 	   <div class='flex justify-center items-align p-3 text-2xl font-mono font-bold'>Login in</div> 
 	   <div class='flex justify-center items-align p-3 font-mono text-lg font-bold gap-1 border-gray-500 border-2 rounded-[4px] w-full cursor-pointer'><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png" alt="" class='w-[20px] h-[20px] translate-y-[4px]'><a href="/auth/google">Login with Google</a></div>
 	   <div class='encapsulate-field flex flex-col flex-nowrap justify-center items-align gap-16 mt-5 grow  w-full'>

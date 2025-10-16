@@ -9,10 +9,6 @@ passport.use(new GoogleStrategy({
 }, 
     function(request , accessToken , refreshToken , profile, cb)
 	{
-	console.log(`Request  : ${request}`)
-	console.log(`accessToken : ${accessToken}`)
-	console.log(`refreshToken : ${refreshToken}`)
-	console.log(`refreshToken : ${JSON.stringify(profile)}`)
 	cb(null , profile)
     }
 ))
