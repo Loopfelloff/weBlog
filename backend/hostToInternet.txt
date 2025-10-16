@@ -1,1 +1,10 @@
-money money money
+First step => Change your port from constant value to process.env.PORT , PaaS services will put that value in the environment variables.
+Second step => Configure your cors to allow all origin and method, app.use(cors()) and finally set 0.0.0.0 at app.listen(port_no , '0.0.0.0' , ()=>{})
+Third step => Rename all your server.js into app.js across package.json, and file name
+Fourth step => In package.json script : { "start" : "node app.js" }
+Fifth step => Upload it into your github and commit it the final Change
+Sixth step => Link github with Railway(Paas) and then chose from github and start deployment
+Seventh step => Before deployment setup the .env variables there.
+Eight step =>  Go to your mongodb project and all the way down to network security section where you can press add ip and select accept from every where or sth like that
+Ninth step => 
+
