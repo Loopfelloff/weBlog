@@ -15,7 +15,7 @@ const googleLoginHandler = require('./routers/googleLoginRouter')
 
 connectDB()
 app.use(cookie_parser()) // make sure this is the highest of all
-app.use(cors(corsOptions))
+app.use(cors())
 app.use(express.json())
 app.set('view engine' , "ejs")
 app.set("views" , "./views")
