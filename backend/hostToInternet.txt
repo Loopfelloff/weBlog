@@ -6,5 +6,5 @@ Fifth step => Upload it into your github and commit it the final Change
 Sixth step => Link github with Railway(Paas) and then chose from github and start deployment
 Seventh step => Before deployment setup the .env variables there.
 Eight step =>  Go to your mongodb project and all the way down to network security section where you can press add ip and select accept from every where or sth like that
-Ninth step => 
+Ninth step =>  Change the value of redirect URI and javascript origin in google console for google login, and also change the value in the passportGoogleConfig
 

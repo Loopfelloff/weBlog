@@ -4,7 +4,7 @@ const passport = require('passport')
 passport.use(new GoogleStrategy({
     clientID : process.env.GOOGLE_CLIENT_ID,
     clientSecret : process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL : "https://weblog-production-bd47.up.railway.app/auth/redirect/google",
+    callbackURL : "http://localhost/auth/redirect/google",
     passReqToCallback   : true
 }, 
     function(request , accessToken , refreshToken , profile, cb)

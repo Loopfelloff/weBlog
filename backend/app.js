@@ -5,7 +5,7 @@ const cors = require("cors")
 const cookie_parser = require("cookie-parser")
 const corsOptions = require("./config/corsOption")
 const connectDB = require("./config/database")
-const port = process.env.PORT || 5000
+const port = 5000 
 const mongoose = require("mongoose")
 
 const signupHandler = require('./routers/signupRouter')
@@ -56,8 +56,9 @@ app.use(async (err , req, res , next)=>{
 
 mongoose.connection.once("open", ()=>{
     console.log("connected to mongoDB")
-    app.listen(5000 , '0.0.0.0', ()=>{
+    app.listen(port, '0.0.0.0', ()=>{
 	console.log("the server is listening at port : " , port)
+	console.log(`http://localhost:80`)
     })
 })
 

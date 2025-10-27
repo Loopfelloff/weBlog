@@ -7,10 +7,10 @@ const googleLoginHandler = async (req , res , next)=>{
     
 	const {email, displayName, picture } = req.user
 
-	const foundUser = await User.findOne({email}).exec()	
+	let foundUser = await User.findOne({email}).exec()	
 
 	if(!foundUser) {
-	    await User.create({
+	foundUser = await User.create({
 		fullName : displayName,
 		email : email,
 		profileImageUrl : picture
